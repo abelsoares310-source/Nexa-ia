@@ -1,0 +1,6 @@
+{
+  "name": "Plano de Estudos & Tutor IA",
+  "description": "IA especialista em aprendizagem com tela 'Estudar Agora' para sessões dinâmicas guiadas por IA (aquecimento com priming, questões com dicas socráticas, flashcards com mnemônica visual e síntese no diário), cronômetro integrado com controle de pausa e salvamento automático. Compatível com Modo Personalizado, Modo Escolar (Fundamental e Médio BNCC), ENEM, Vestibulares, Militares e Concursos.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

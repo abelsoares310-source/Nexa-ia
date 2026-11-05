@@ -1,0 +1,162 @@
+{
+  "entities": {
+    "UserProfileDocument": {
+      "title": "UserProfileDocument",
+      "description": "User account and metadata document",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User Firebase Auth UID"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Account creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["userId", "email"]
+    },
+    "UserStudyProgress": {
+      "title": "UserStudyProgress",
+      "description": "Full study progress, plans, streak, and review state of the user",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User Firebase Auth UID owner"
+        },
+        "profile": {
+          "type": "object",
+          "description": "Study profile parameters and goals"
+        },
+        "diagnosticData": {
+          "type": "object",
+          "description": "Diagnostic questions and test configuration"
+        },
+        "diagnosticResult": {
+          "type": "object",
+          "description": "Diagnostic evaluation score and mastery metrics"
+        },
+        "plans": {
+          "type": "object",
+          "description": "Generated annual plan, month 1 plan, and weekly routine"
+        },
+        "flashcards": {
+          "type": "array",
+          "description": "Active flashcards deck"
+        },
+        "spacedReviews": {
+          "type": "array",
+          "description": "Spaced repetition items"
+        },
+        "streakState": {
+          "type": "object",
+          "description": "Question streak, records, and points"
+        },
+        "questionRecords": {
+          "type": "array",
+          "description": "Historical answered questions"
+        },
+        "dailyChallenges": {
+          "type": "object",
+          "description": "Daily challenges state"
+        },
+        "journalEntries": {
+          "type": "array",
+          "description": "Study journal entries"
+        },
+        "checkins": {
+          "type": "array",
+          "description": "Weekly reflection check-ins"
+        },
+        "learningGoals": {
+          "type": "array",
+          "description": "Subject learning goals and mastery targets"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last sync timestamp"
+        }
+      },
+      "required": ["userId"]
+    },
+    "CommunityMetricDocument": {
+      "title": "CommunityMetricDocument",
+      "description": "Anonymized real community metrics from registered students",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Author UID"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display nickname"
+        },
+        "objective": {
+          "type": "string",
+          "description": "Target course or exam"
+        },
+        "averageAccuracy": {
+          "type": "number",
+          "description": "Real average accuracy rate percentage"
+        },
+        "totalHoursCompleted": {
+          "type": "number",
+          "description": "Total completed study hours"
+        },
+        "checkinsCount": {
+          "type": "number",
+          "description": "Total registered weekly checkins"
+        },
+        "streakDays": {
+          "type": "number",
+          "description": "Daily streak days"
+        },
+        "totalQuestionsAnswered": {
+          "type": "number",
+          "description": "Number of questions answered"
+        },
+        "subjectAccuracies": {
+          "type": "array",
+          "description": "Subject performance list"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["userId", "objective"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfileDocument",
+      "description": "Stores user basic account profile and identity metadata"
+    },
+    "/users/{userId}/progress/{progressId}": {
+      "schema": "UserStudyProgress",
+      "description": "Stores detailed study progress, routines, diagnostic, and flashcards for the user"
+    },
+    "/communityMetrics/{metricId}": {
+      "schema": "CommunityMetricDocument",
+      "description": "Public aggregated study progress metrics shared across registered students"
+    }
+  }
+}
